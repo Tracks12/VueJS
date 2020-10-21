@@ -17,6 +17,7 @@ button {
   border-radius: 5px;
   font-size: 1em;
   margin: 0.5em;
+  outline: inherit;
   padding: 1em 1em 1em 2em;
 }
 
@@ -46,10 +47,22 @@ button {
   background: rgb(0, 0, 0, 0.4);
 }
 
-table td {
-  padding: 1em;
+table {
+  display: table;
+}
+
+table > tr > tr {
+  background: none;
+  display: block;
+  padding: 0;
 }
 
 table tr {
   background: rgb(0, 0, 0, 0.25);
+}
+
+table td,
+table th {
+  padding: 1em;
+  vertical-align: middle;
 }
