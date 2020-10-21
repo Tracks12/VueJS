@@ -1,0 +1,46 @@
+* {
+  background: transparent;
+  border: none;
+  color: rgb(200, 200, 200);
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: rgb(50, 50, 50);
+}
+
+input,
+button {
+  background: rgb(0, 0, 0, 0.4);
+  border-radius: 5px;
+  font-size: 1em;
+  margin: 0.5em;
+  padding: 1em 1em 1em 2em;
+  text-transform: capitalize;
+}
+
+input[type="submit"],
+button {
+  cursor: pointer;
+  padding: 1em 2em;
+}
+
+.nav {
+  list-style-type: none;
+  display: table;
+  width: 100%;
+}
+
+.nav li {
+  display: table-cell;
+  text-align: center;
+}
+
+.nav li a {
+  display: block;
+  padding: 1em;
+}
+.nav li a:hover {
+  background: rgb(0, 0, 0, 0.4);
+}
