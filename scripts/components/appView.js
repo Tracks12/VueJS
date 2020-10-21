@@ -1,7 +1,7 @@
 const onlineUsers = $.ajax({
   async: false,
-  type: "post",
-  url: "./data/users.json",
+  method: "post",
+  url: "/api?onlineUsers",
   dataType: "json",
 }).responseJSON;
 
@@ -116,7 +116,11 @@ const appView = {
       this.price = null;
     },
 
-    searchUser: function () {},
+    searchUser: function () {
+      if (!this.search) {
+        return false;
+      }
+    },
   },
 
   data() {
