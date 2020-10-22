@@ -9,6 +9,8 @@
 
 	declare(strict_types = 1);
 
+	require_once('service.php');
+
 	if(
 		!empty($_SERVER['HTTP_X_REQUESTED_WITH'])
 		&& (strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest')
@@ -18,10 +20,14 @@
 		 * XHR Request Only
 		 */
 
-		switch($_SERVER['REQUEST_URI']) {
-			case "/api?onlineUsers":
+		switch(service::isInput($_SERVER['REQUEST_URI'])) {
+			case "/api/?getUsers":
 				http_response_code(200);
-				echo(file_get_contents("/api/data/users.json"));
+				echo(file_get_contents("data/users.json"));
+				break;
+
+			default:
+				die();
 				break;
 		}
 	}
@@ -31,9 +37,7 @@
 		 * HTTP Request & Other
 		 */
 
-		http_response_code(200);
- 		echo(file_get_contents("data/users.json"));
-		http_response_code(404);
+		http_response_code(403);
 	}
 
 	/**

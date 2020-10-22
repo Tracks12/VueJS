@@ -49,6 +49,7 @@ button {
 
 table {
   display: table;
+  width: 100%;
 }
 
 table > tr > tr {
