@@ -8,9 +8,12 @@ const getUsers = $.ajax({
 const appView = {
   template: `
 		<div>
-			<form>
-				<input type="text" placeholder="username" v-model="search" />
-				<input type="submit" value="search" @click.prevent="searchUser" />
+			<form @click.prevent="addProduct">
+				<div class="inputBox">
+					<span class="mdi mdi-account mdi-24px"></span>
+					<input type="text" v-model="search" required />
+					<label>search user</label>
+				</div>
 			</form>
 
 			<table>
@@ -40,9 +43,12 @@ const appView = {
 				</tr>
 			</table>
 
-			<form>
-				<input type="text" placeholder="username" v-model="newUser" />
-				<input type="submit" @click.prevent="addUser" />
+			<form @click.prevent="addProduct">
+				<div class="inputBox">
+					<input type="text" v-model="newUser" required />
+					<label>username</label>
+				</div>
+				<input type="submit" />
 			</form>
 
 			<table>
@@ -58,10 +64,16 @@ const appView = {
 				</tr>
 			</table>
 
-			<form>
-				<input type="text" placeholder="product" v-model="product" />
-				<input type="number" placeholder="price" v-model="price" />
-				<input type="submit" @click.prevent="addProduct" />
+			<form @click.prevent="addProduct">
+				<div class="inputBox">
+					<input type="text" v-model="product" required />
+					<label>product</label>
+				</div>
+				<div class="inputBox">
+					<input type="number" v-model="price" required />
+					<label>price</label>
+				</div>
+				<input type="submit" />
 			</form>
 		</div>
 	`,
