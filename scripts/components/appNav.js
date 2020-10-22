@@ -2,7 +2,7 @@ const appNav = {
   template: `
 		<ul id="nav-output" class="nav">
 			<li v-for="item in items">
-				<a href="#">{{ item.text }}</a>
+				<a :href="item.href">{{ item.text }}</a>
 			</li>
 		</ul>
 	`,
@@ -12,15 +12,11 @@ const appNav = {
       items: [
         {
           text: "username",
-          href: "#",
+          href: "#username",
         },
         {
           text: "product",
-          href: "#",
-        },
-        {
-          text: "search",
-          href: "#",
+          href: "#product",
         },
       ],
     };

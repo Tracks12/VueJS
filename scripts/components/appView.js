@@ -1,7 +1,7 @@
-const onlineUsers = $.ajax({
+const getUsers = $.ajax({
   async: false,
   method: "post",
-  url: "/api?onlineUsers",
+  url: "/api/?getUsers",
   dataType: "json",
 }).responseJSON;
 
@@ -15,7 +15,6 @@ const appView = {
 
 			<table>
 				<tr>
-					<th>id</th>
 					<th>name</th>
 					<th>username</th>
 					<th>email</th>
@@ -25,7 +24,6 @@ const appView = {
 					<th>company</th>
 				</tr>
 				<tr v-for="user in users">
-					<td>{{ user.id }}</td>
 					<td>{{ user.name }}</td>
 					<td>{{ user.username }}</td>
 					<td>{{ user.email }}</td>
@@ -33,7 +31,9 @@ const appView = {
 						<td v-if="k != 'geo'">{{ k }}: {{ v }}</td>
 					</tr>
 					<td>{{ user.phone }}</td>
-					<td>{{ user.website }}</td>
+					<td>
+						<a :href="user.website">{{ user.website }}</a>
+					</td>
 					<tr v-for="v, k in user.company">
 						<td>{{ k }}: {{ v }}</td>
 					</tr>
@@ -126,7 +126,7 @@ const appView = {
   data() {
     return {
       newUser: "",
-      users: onlineUsers,
+      users: getUsers,
 
       product: "",
       price: "",
