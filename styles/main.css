@@ -125,7 +125,6 @@ ul {
 }
 
 ul > li {
-  background: rgba(255, 255, 255, 0.1);
   display: block;
   position: relative;
   text-align: right;
@@ -147,6 +146,10 @@ table {
   width: 100%;
 }
 
+table > tr > th {
+  height: 2em;
+}
+
 table > tr > tr {
   background: none;
   display: block;
@@ -161,4 +164,14 @@ table td,
 table th {
   padding: 1em;
   vertical-align: middle;
+}
+
+table .id {
+  text-align: center;
+  width: 1em;
+}
+
+table .price {
+  text-align: right;
+  width: 7em;
 }
