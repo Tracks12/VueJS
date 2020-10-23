@@ -1,13 +1,5 @@
 <?php
 	/**
-	 * Project  : DM-Cacti-API
-	 * Date     : 12/09/2020
-	 * Autor    : CARDINAL Florian
-	 * Nom      : service.php
-	 * Location : /core/
-	 */
-
-	/**
  	 * secure
  	 * Objet de vérification de données entrentes
  	 */
@@ -62,7 +54,3 @@
 			return $return;
 		}
 	}
-
-	/**
-	 * END
-	 */

@@ -1,0 +1,5 @@
+[
+  { "id": 1, "name": "Zalman Z11", "price": 52.0 },
+  { "id": 2, "name": "AMD Ryzen 7", "price": 347.0 },
+  { "id": 3, "name": "GigaBytes Quantum Z20", "price": 77.0 }
+]
