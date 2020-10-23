@@ -1,3 +1,5 @@
+import "/scripts/jquery-3.5.1.js";
+
 import appNav from "./components/appNav.js";
 import appView from "./components/appView.js";
 
