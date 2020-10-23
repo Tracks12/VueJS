@@ -1,8 +1,11 @@
+@import "/styles/materialdesignicons.min.css";
+@import "/styles/fonts.css";
+
 * {
   background: transparent;
   border: none;
   color: rgb(200, 200, 200);
-  font-family: sans-serif;
+  font-family: "DejaVu Sans Light", sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -11,18 +14,88 @@ html {
   background: rgb(50, 50, 50);
 }
 
+aside {
+  background: rgb(0, 0, 0, 0.25);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  font-size: 3em;
+  padding: 1em;
+  text-align: center;
+}
+
+aside p {
+  display: block;
+  padding: 2em 0;
+  text-align: center;
+  width: 30em;
+}
+
+form > .inputBox {
+  position: relative;
+  display: inline-block;
+  margin: 1em;
+}
+
 input,
+textarea,
 button {
   background: rgb(0, 0, 0, 0.4);
   border-radius: 5px;
+  box-sizing: border-box;
+  padding: 1em;
   font-size: 1em;
-  margin: 0.5em;
-  outline: inherit;
-  padding: 1em 1em 1em 2em;
+  outline: none;
+}
+form > .inputBox > textarea {
+  height: 5em;
+  margin-bottom: 0;
+  resize: none;
 }
 
-input[type="submit"],
-button {
+form > .inputBox > label,
+form > .inputBox > span {
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transition: 0.3s all;
+}
+
+form > .inputBox > label,
+form > .inputBox > span,
+form > .inputBox > input,
+form > .inputBox > textarea {
+  font-size: 18px;
+  letter-spacing: 1px;
+  padding: 1em 1em 1em 2em;
+  transition: 0.3s all;
+}
+form > .inputBox > span {
+  padding: 0.95em 0.5em;
+}
+
+form > .inputBox > input:focus ~ label,
+form > .inputBox > input:valid ~ label,
+form > .inputBox > textarea:focus ~ label,
+form > .inputBox > textarea:valid ~ label {
+  font-weight: bold;
+  font-size: 12px;
+  left: -20px;
+  top: -10px;
+}
+
+form > .inputBox > input:focus,
+form > .inputBox > textarea:focus {
+  border-color: rgb(255, 0, 0);
+}
+
+form > input[type="submit"],
+form > button {
   cursor: pointer;
   padding: 1em 2em;
   text-transform: capitalize;
@@ -47,9 +120,34 @@ button {
   background: rgb(0, 0, 0, 0.4);
 }
 
+ul {
+  display: block;
+}
+
+ul > li {
+  display: block;
+  position: relative;
+  text-align: right;
+}
+
+ul > li > label {
+  position: absolute;
+  left: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+ul > li > button {
+  margin: 0.25em;
+}
+
 table {
   display: table;
   width: 100%;
+}
+
+table > tr > th {
+  height: 2em;
 }
 
 table > tr > tr {
@@ -66,4 +164,14 @@ table td,
 table th {
   padding: 1em;
   vertical-align: middle;
+}
+
+table .id {
+  text-align: center;
+  width: 1em;
+}
+
+table .price {
+  text-align: right;
+  width: 7em;
 }

@@ -3,14 +3,32 @@ const getUsers = $.ajax({
   method: "post",
   url: "/api/?getUsers",
   dataType: "json",
-}).responseJSON;
+}).responseJSON.response;
+
+const getProducts = $.ajax({
+  async: false,
+  method: "post",
+  url: "/api/?getProducts",
+  dataType: "json",
+}).responseJSON.response;
 
 const appView = {
+  props: {
+    view: {
+      required: true,
+      type: String,
+      default: "products",
+    },
+  },
+
   template: `
-		<div>
-			<form>
-				<input type="text" placeholder="username" v-model="search" />
-				<input type="submit" value="search" @click.prevent="searchUser" />
+		<div v-if="view === 'users'">
+			<form @click.prevent="addProduct">
+				<div class="inputBox">
+					<span class="mdi mdi-account-search mdi-24px"></span>
+					<input type="text" v-model="search" required />
+					<label>search user</label>
+				</div>
 			</form>
 
 			<table>
@@ -40,34 +58,53 @@ const appView = {
 				</tr>
 			</table>
 
-			<form>
-				<input type="text" placeholder="username" v-model="newUser" />
-				<input type="submit" @click.prevent="addUser" />
+			<form @click.prevent="addProduct">
+				<div class="inputBox">
+					<span class="mdi mdi-account mdi-24px"></span>
+					<input type="text" v-model="newUser" required />
+					<label>username</label>
+				</div>
+				<input type="submit" />
 			</form>
+		</div>
 
+		<div v-if="view === 'products'">
 			<table>
 				<tr>
-					<th>nr.</th>
+					<th class="id">nr.</th>
 					<th>name</th>
 					<th>price</th>
 				</tr>
 				<tr v-for="item in products">
-					<td>{{ item.id }}</td>
+					<td class="id">{{ item.id }}</td>
 					<td>{{ item.name }}</td>
-					<td>{{ item.price }} €</td>
+					<td class="price">{{ item.price }} $</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td class="price">{{ total() }} $</td>
 				</tr>
 			</table>
 
-			<form>
-				<input type="text" placeholder="product" v-model="product" />
-				<input type="number" placeholder="price" v-model="price" />
-				<input type="submit" @click.prevent="addProduct" />
+			<form @click.prevent="addProduct">
+				<div class="inputBox">
+					<span class="mdi mdi-label mdi-24px"></span>
+					<input type="text" v-model="product" required />
+					<label>product</label>
+				</div>
+				<div class="inputBox">
+					<span class="mdi mdi-currency-usd mdi-24px"></span>
+					<input type="number" v-model="price" required />
+					<label>price</label>
+				</div>
+				<input type="submit" />
 			</form>
 		</div>
 	`,
 
   methods: {
-    addUser: function () {
+    addUser() {
       let newUser = {
         id: this.users.length + 1,
         name: null,
@@ -100,7 +137,13 @@ const appView = {
       this.newUser = null;
     },
 
-    addProduct: function () {
+    searchUser() {
+      if (!this.search) {
+        return false;
+      }
+    },
+
+    addProduct() {
       let product = {
         id: this.products.length + 1,
         name: this.product,
@@ -111,30 +154,40 @@ const appView = {
         return false;
       }
 
-      this.products.push(product);
-      this.product = null;
-      this.price = null;
+      let reqInsert = $.ajax({
+        async: false,
+        method: "post",
+        url: "/api/?insertProduct",
+        data: product,
+        dataType: "json",
+      }).responseJSON.response;
+
+      if (reqInsert) {
+        this.products.push(product);
+        this.product = null;
+        this.price = null;
+      }
     },
 
-    searchUser: function () {
-      if (!this.search) {
-        return false;
-      }
+    total() {
+      let total = 0;
+
+      for (let i = 0; i < this.products.length; i++)
+        total += parseFloat(this.products[i].price);
+
+      return total;
     },
   },
 
   data() {
     return {
+      search: "",
       newUser: "",
       users: getUsers,
 
       product: "",
       price: "",
-      products: [
-        { id: 1, name: "Zalman Z11", price: 52.0 },
-        { id: 2, name: "AMD Ryzen 7", price: 347.0 },
-        { id: 3, name: "GigaBytes Quantum Z20", price: 77.0 },
-      ],
+      products: getProducts,
     };
   },
 };

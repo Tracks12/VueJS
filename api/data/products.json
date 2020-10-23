@@ -1,0 +1,11 @@
+[
+  { "id": 1, "name": "Zalman Z11", "price": 52 },
+  { "id": 2, "name": "AMD Ryzen 7", "price": 347 },
+  { "id": 3, "name": "GigaBytes Quantum Z20", "price": 77 },
+  { "id": 4, "name": "Alimentation Corsair CX 430 Bronze", "price": 47 },
+  { "id": 5, "name": "AMD Sapphire RX 480 Nitro", "price": 467 },
+  { "id": 6, "name": "RAM G.Skill 32 Go", "price": 150 },
+  { "id": 7, "name": "Disque dur SSD 500 Go", "price": 75 },
+  { "id": 8, "name": "Disque dur HDD 5 To", "price": 100 },
+  { "id": 9, "name": "Ventirad RGB Bequiet", "price": 44 }
+]

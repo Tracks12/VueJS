@@ -1,13 +1,5 @@
 <?php
 	/**
-	 * Project  : DM-Cacti-API
-	 * Date     : 12/09/2020
-	 * Autor    : CARDINAL Florian
-	 * Nom      : service.php
-	 * Location : /core/
-	 */
-
-	/**
  	 * secure
  	 * Objet de vérification de données entrentes
  	 */
@@ -17,7 +9,7 @@
  		 * @param string $data string of mail
  		 * @return bool [true/false]
  		 */
-		public function isMail(string $data): bool {
+		public static function isMail(string $data): bool {
 			$data = filter_var($data, FILTER_VALIDATE_EMAIL);
 
 			return $data;
@@ -28,7 +20,7 @@
 		 * @param string $data string of phone number
 		 * @return int [1/0]
 		 */
-		public function isPhone(string $data): int {
+		public static function isPhone(string $data): int {
 			$data = preg_match("/^[0-9 ]*$/", $data);
 
 			return $data;
@@ -39,10 +31,11 @@
 		 * @param string $data string of input parameter
 		 * @return string string of output and verify parameter
 		 */
-		public function isInput(string $data): string {
+		public static function isInput(string $data): string {
 			$data = trim($data);
 			$data = stripslashes($data);
 			$data = htmlspecialchars($data);
+
 			return $data;
 		}
 
@@ -61,7 +54,3 @@
 			return $return;
 		}
 	}
-
-	/**
-	 * END
-	 */
